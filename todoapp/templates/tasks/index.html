@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}To-Do List{% endblock %}
+
+{% block content %}
+  <h1>To-Do List</h1>
+
+  <form action="{{ url_for('tasks.create') }}" method="post" class="add-form">
+    <input type="text" name="title" placeholder="Add a task..." autofocus autocomplete="off">
+    <input type="date" name="due_date" aria-label="Due date">
+    <button type="submit">Add</button>
+  </form>
+
+  <nav class="filters">
+    <a href="{{ url_for('tasks.index', status='all') }}" class="{{ 'active' if status == 'all' }}">All</a>
+    <a href="{{ url_for('tasks.index', status='active') }}" class="{{ 'active' if status == 'active' }}">Active</a>
+    <a href="{{ url_for('tasks.index', status='done') }}" class="{{ 'active' if status == 'done' }}">Done</a>
+  </nav>
+
+  {% if tasks %}
+    <ul class="task-list">
+      {% for task in tasks %}
+        <li class="{{ 'done' if task.done }}{{ ' overdue' if task.due_date and task.due_date < today and not task.done }}">
+          <form action="{{ url_for('tasks.toggle', task_id=task.id, status=status) }}" method="post" class="toggle-form">
+            <button type="submit" class="checkbox" aria-label="Toggle done">
+              {{ '✓' if task.done else '' }}
+            </button>
+          </form>
+          <div class="task-body">
+            <span class="title">{{ task.title }}</span>
+            <form action="{{ url_for('tasks.update_due_date', task_id=task.id, status=status) }}" method="post" class="due-date-form">
+              <input type="date" name="due_date" value="{{ task.due_date or '' }}" aria-label="Due date">
+              <button type="submit" class="due-date-save">Set</button>
+            </form>
+          </div>
+          <form action="{{ url_for('tasks.delete', task_id=task.id, status=status) }}" method="post" class="delete-form">
+            <button type="submit" class="delete" aria-label="Delete task">✕</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="empty">No tasks yet. Add one above.</p>
+  {% endif %}
+{% endblock %}

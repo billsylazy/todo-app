@@ -1,0 +1,185 @@
+:root {
+  color-scheme: light dark;
+  --border: #d0d0d0;
+  --muted: #888;
+  --accent: #2563eb;
+  --danger: #dc2626;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-form input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.add-form button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.filters a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.filters a.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.flashes {
+  list-style: none;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0 1rem;
+  background: #fef2f2;
+  color: var(--danger);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+
+.task-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.task-list li.done .title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.task-list li.overdue .title {
+  color: var(--danger);
+}
+
+.task-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.task-body .title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toggle-form,
+.delete-form,
+.due-date-form {
+  margin: 0;
+}
+
+.due-date-form {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.due-date-form input[type="date"] {
+  font-size: 0.8rem;
+  padding: 0.15rem 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  background: transparent;
+}
+
+.due-date-save {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.9rem;
+  padding: 0;
+}
+
+.title {
+  flex: 1;
+}
+
+.delete {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+}
+
+.delete:hover {
+  color: var(--danger);
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 2rem 0;
+}
